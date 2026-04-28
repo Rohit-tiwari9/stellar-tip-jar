@@ -1,0 +1,16 @@
+{
+  "name": "stellar-tip-jar",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@stellar/stellar-sdk": "^13.0.0"
+  },
+  "devDependencies": {
+    "vite": "^5.0.0"
+  }
+}

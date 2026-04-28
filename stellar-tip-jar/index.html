@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Stellar Tip Jar — Send XLM tips on the Stellar Testnet using Freighter wallet" />
+    <title>Stellar Tip Jar</title>
+     <!-- FIX for Freighter + Vite -->
+  <script>
+    window.global = window;
+  </script>
+
+  <!-- Freighter API -->
+  <script src="https://cdn.jsdelivr.net/npm/@stellar/freighter-api/dist/index.min.js"></script>
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+    <link rel="stylesheet" href="/styles/style.css" />
+  </head>
+  <body>
+    <div id="app">
+
+      <!-- ── Header ── -->
+      <header>
+        <div class="brand">
+          <img src="/logo.svg" alt="Stellar Tip Jar logo" />
+          <span class="brand-name">Stellar <span>Tip Jar</span></span>
+        </div>
+        <span class="network-badge">Testnet</span>
+      </header>
+
+      <!-- ── Connect screen ── -->
+      <div id="connect-screen" class="card">
+        <div class="connect-icon">
+          <!-- Wallet icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="5" width="20" height="14" rx="3"/>
+            <path d="M16 12a1 1 0 1 0 2 0 1 1 0 0 0-2 0"/>
+            <path d="M2 10h20"/>
+          </svg>
+        </div>
+
+        <h1 class="connect-title">Connect your wallet</h1>
+        <p class="connect-sub">
+          Use Freighter to access the XLM tip jar dashboard on Stellar Testnet.
+        </p>
+
+        <div id="no-freighter-banner">
+          <p>Freighter wallet not installed</p>
+          <span>Install the Freighter browser extension to continue.</span><br />
+          <a class="install-link" href="https://freighter.app" target="_blank" rel="noopener">
+            Install Freighter extension ↗
+          </a>
+        </div>
+
+        <button id="connect-btn" class="btn btn-primary">
+          Connect Freighter Wallet
+        </button>
+      </div>
+
+      <!-- ── Dashboard (hidden until wallet connected) ── -->
+      <div id="dashboard">
+
+        <!-- Wallet strip -->
+        <div class="wallet-strip">
+          <div class="wallet-left">
+            <div class="status-dot" aria-hidden="true"></div>
+            <div class="wallet-info">
+              <div class="wallet-label">Connected wallet</div>
+              <div id="wallet-addr" class="wallet-addr">—</div>
+            </div>
+          </div>
+          <button id="disconnect-btn" class="btn btn-ghost">Disconnect</button>
+        </div>
+
+        <!-- Balance card -->
+        <div class="balance-card">
+          <div>
+            <div class="balance-label">XLM Balance</div>
+            <div>
+              <span id="balance-display" class="balance-amount">—</span>
+              <span class="balance-unit">XLM</span>
+            </div>
+          </div>
+          <button id="refresh-btn" class="refresh-btn" title="Refresh balance" aria-label="Refresh balance">↻</button>
+        </div>
+
+        <!-- Send panel -->
+        <div class="send-panel">
+          <p class="panel-title">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 2 11 13"/><path d="M22 2 15 22 11 13 2 9l20-7z"/>
+            </svg>
+            Send XLM
+          </p>
+
+          <div class="field">
+            <label class="field-label" for="recipient">Recipient address</label>
+            <input
+              id="recipient"
+              type="text"
+              placeholder="G... (Stellar public key)"
+              autocomplete="off"
+              spellcheck="false"
+            />
+          </div>
+
+          <div class="field">
+            <label class="field-label" for="amount">Amount</label>
+            <div class="amount-row">
+              <input
+                id="amount"
+                type="text"
+                placeholder="0.0000000"
+                autocomplete="off"
+                inputmode="decimal"
+              />
+              <span class="amount-unit">XLM</span>
+            </div>
+          </div>
+
+          <button id="send-btn" class="btn btn-primary">Send XLM</button>
+
+          <div id="tx-feedback" role="alert" aria-live="polite"></div>
+        </div>
+
+      </div>
+      <!-- end dashboard -->
+
+      <footer>
+        <p>Built on <a href="https://stellar.org" target="_blank" rel="noopener">Stellar</a> Testnet &middot; Powered by Freighter</p>
+      </footer>
+
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
